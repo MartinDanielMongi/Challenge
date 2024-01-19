@@ -1,0 +1,12 @@
+{
+  "secret": "7fc54f2a830b2391e0fc8b5f3559dc59",
+  "server": {
+    "port": 3000
+  },
+  "mysql": {
+    "host": "127.0.0.1",
+    "database": "challenge",
+    "username": "root",
+    "password": "Yuyosdecampo123"
+  }
+}
