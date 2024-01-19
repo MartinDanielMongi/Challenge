@@ -1,0 +1,26 @@
+The viewer:
+
+
+La aplicación a desarrollar se trata de un viewer que permitirá al usuario visualizar grandes imágenes en una webapp sin
+ necesidad de que el front cargue una gran cantidad de información. En particular:
+
+    -Existirá un front, implementado en vue, que incluirá un viewer interactivo que permita desplazar y hacer zoom
+        -Además, un desplegable permitirá elegir entre 3 imágenes (te puedo pasar ejemplos, pero serían 3 imágenes
+        de unos 100MBs que se encuentran en el disco duro del worker y que desde el front se seleccionarán)
+        -Además, el usuario tendrá dos botones más: transformar en black and white (on/off) y descargar imagen actual
+            -El botón de descarga enviará al usuario el recorte que está siendo visualizado en el viewer
+    -También se implementará un backend en nodeJS con su correspondiente DDBB que incluya una API que conectará al worker
+     con el front
+    -El worker será un script de python que cargará la imagen indicada por el front, que le llegará en forma de ruta dentro
+    de su disco duro, e irá enviándole los recortes correspondientes a la posición, resolución y tamaño requerido por el front.
+    Todo esto mediante la escucha continua a un endpoint de la API
+        -Además, existirá una opción por la cual ese recorte se envie en Blanco y negro si así está marcado en el front
+        -El worker estará a la espera de cualquier interacción del front. Esto se gestionará mediante la API
+        -Todas las tareas que debe realizar el worker se activarán por medio de las llamadas a la API
+
+Varios apuntes adicionales:
+
+    -El viewer será de una resolución determinada, por lo tanto, las imágenes que el worker envíe a la API deberán adaptarse a dicha
+    resolución para aumentar la eficiencia del proceso
+    -Por robustez, puede resultar interesante enviar la información de la imagen en base64, por ejemplo
+    -Se trata de una solución abierta que se puede implementar de mil maneras, siéntete cómodo planteando la que más te atraiga.
